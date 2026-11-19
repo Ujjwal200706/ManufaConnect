@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ManufaConnect</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#14181f;--mu:#5b6574;--bd:#dfe3e9;--ac:#0b6b5c;--ac2:#e6f3f0;--wr:#b4540a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#181d24;--tx:#eef1f5;--mu:#97a1af;--bd:#2a313b;--ac:#3fc4a8;--ac2:#14302b;--wr:#f0a35e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1318;--card:#181d24;--tx:#eef1f5;--mu:#97a1af;--bd:#2a313b;--ac:#3fc4a8;--ac2:#14302b;--wr:#f0a35e;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.bar{max-width:1050px;margin:auto;padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.logo{font-weight:800;font-size:18px;color:var(--ac)}
+nav{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+nav button{background:none;border:0;color:var(--mu);padding:6px 10px;border-radius:8px;cursor:pointer;font:inherit}
+nav button.on{background:var(--ac2);color:var(--ac);font-weight:600}
+main{max-width:1050px;margin:auto;padding:16px}
+h2{margin:6px 0 14px}h3{margin:0 0 6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.mu{color:var(--mu);font-size:13px}
+.tag{display:inline-block;background:var(--ac2);color:var(--ac);border-radius:99px;padding:1px 9px;font-size:12px;margin:2px 3px 2px 0}
+.tag.w{background:transparent;border:1px solid var(--wr);color:var(--wr)}
+button.p,button.s{border-radius:8px;padding:8px 14px;border:1px solid var(--ac);cursor:pointer;font:inherit}
+button.p{background:var(--ac);color:#fff}button.s{background:none;color:var(--ac)}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+label{display:block;font-size:13px;color:var(--mu);margin:10px 0 3px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.chips label{display:inline-flex;gap:4px;align-items:center;margin:2px 4px 2px 0;padding:3px 10px;border:1px solid var(--bd);border-radius:99px;color:var(--tx);font-size:13px;cursor:pointer}
+.chips input{width:auto}
+.thumb{height:130px;border-radius:8px;background:var(--ac2);display:flex;align-items:center;justify-content:center;font-size:40px;overflow:hidden;margin-bottom:8px}
+.thumb img,.thumb video{width:100%;height:100%;object-fit:cover}
+.views{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.views figure{margin:0}.views img{width:100%;border-radius:8px;border:1px solid var(--bd);background:#fff}
+.msgs{max-height:240px;overflow:auto;display:flex;flex-direction:column;gap:6px;padding:8px;border:1px solid var(--bd);border-radius:8px;margin-bottom:8px}
+.m{max-width:80%;padding:6px 10px;border-radius:10px;background:var(--ac2)}.m.me{align-self:flex-end;background:var(--ac);color:#fff}
+.auth{max-width:420px;margin:30px auto}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:720px){.two{grid-template-columns:1fr}}
+.dot{background:var(--wr);color:#fff;border-radius:99px;padding:0 6px;font-size:11px;margin-left:3px}
+.list{display:flex;flex-direction:column;gap:10px}
+.strip{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px}.reel{flex:0 0 190px}.thumb.tall{height:260px}
+.igw{max-width:560px;margin:auto}
+.stories{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 12px}
+.st{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;flex:0 0 auto;width:70px}.st small{font-size:12px;color:var(--mu);max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ring{padding:3px;border-radius:50%;background:linear-gradient(45deg,#f9a825,#e1306c,#7b3fe4);display:inline-flex;position:relative}.ring .av{border:3px solid var(--bg)}.ring.sel{outline:2px solid var(--tx);outline-offset:2px}.ring.add{background:var(--bd)}
+.ring.add i{position:absolute;right:-2px;bottom:-2px;background:#0095f6;color:#fff;border-radius:50%;width:20px;height:20px;font-style:normal;text-align:center;line-height:16px;border:2px solid var(--bg)}
+.av{border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex:none}
+.tabs{display:flex;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);margin-bottom:14px}.tabs button{flex:1;background:none;border:0;padding:10px;color:var(--mu);cursor:pointer;font:inherit}.tabs .on{color:var(--tx);font-weight:700;box-shadow:inset 0 -2px var(--tx)}
+.ig{background:var(--card);border:1px solid var(--bd);border-radius:10px;margin-bottom:18px;overflow:hidden}
+.igh{display:flex;gap:10px;align-items:center;padding:10px 12px}.igh>div{flex:1;line-height:1.25}
+.sm{padding:4px 10px!important;font-size:13px}
+.pm{width:100%;background:#000;position:relative;overflow:hidden}.pm img,.pm video,.pm .ph{width:100%;height:100%;object-fit:cover;display:flex;align-items:center;justify-content:center;font-size:56px}
+.sq{aspect-ratio:1}.r45{aspect-ratio:4/5}.r916{aspect-ratio:9/16}
+.iga{padding:8px 12px 0;display:flex;gap:12px;align-items:center}.ic{background:none;border:0;font-size:24px;cursor:pointer;padding:0}
+.igc{padding:4px 12px 12px;display:flex;flex-direction:column;gap:3px}.igc input{border:0;border-top:1px solid var(--bd);border-radius:0;background:none;margin-top:6px;padding:8px 0}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}.rt{position:relative;cursor:pointer}.rt video{pointer-events:none}
+.ro{position:absolute;inset:auto 0 0 0;padding:20px 6px 6px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:12px;display:flex;flex-direction:column}
+.fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--ac);color:#fff;font-size:32px;line-height:1;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:6}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}.md{width:100%;max-width:460px;max-height:90vh;overflow:auto}
+
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;background:radial-gradient(1100px 480px at 85% -10%,var(--ac2),transparent 60%),var(--bg);background-attachment:fixed}
+header,body::before{background:color-mix(in srgb,var(--card) 82%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10}
+.logo{background:linear-gradient(90deg,var(--ac),#2a7de1);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
+nav button{white-space:nowrap;transition:background .2s,color .2s}nav button:hover{background:var(--ac2)}
+.card{border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 20px -12px rgba(0,0,0,.2);transition:transform .22s,box-shadow .22s,border-color .22s}
+.grid>.card:hover{transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(0,0,0,.35);border-color:var(--ac)}
+button{transition:transform .12s,filter .2s,background .2s,box-shadow .2s}button:active{transform:scale(.96)}
+button.p{background:linear-gradient(135deg,var(--ac),#1c8f7c);border-color:transparent;box-shadow:0 6px 14px -6px var(--ac)}button.p:hover{filter:brightness(1.1)}button.s:hover{background:var(--ac2)}
+input,select,textarea{transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px var(--ac2)}
+button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+#app.enter{animation:rise .38s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}}@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}}
+.ov{backdrop-filter:blur(3px)}.ov.in{animation:fade .18s}.ov.in>*{animation:pop .26s cubic-bezier(.2,.8,.2,1)}
+.fab{transition:transform .25s,box-shadow .25s;background:linear-gradient(135deg,var(--ac),#2a7de1)}.fab:hover{transform:scale(1.1) rotate(90deg)}
+.rt{overflow:hidden;border-radius:6px}.rt .pm{transition:transform .4s}.rt:hover .pm{transform:scale(1.06)}
+.ic{transition:transform .15s}.ic:active{transform:scale(1.35)}
+.ig{border-radius:16px;box-shadow:0 8px 20px -14px rgba(0,0,0,.25)}
+.msgs{scroll-behavior:smooth}.m{border-radius:14px}
+.ring{transition:transform .2s}.st:hover .ring{transform:scale(1.07)}
+.thumb,.pm{background-clip:padding-box}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50;max-width:90vw;font-size:14px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}#toast.show{opacity:1;transform:translate(-50%,0)}
+.auth{max-width:440px;padding:28px;text-align:center}.auth form{text-align:left}
+h2{letter-spacing:-.01em}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<header><div class="bar"><span class="logo">⚙ ManufaConnect</span><nav id="nav"></nav><span id="who" class="mu"></span></div></header>
+<main id="app"></main>
+<script>
+const PROCS=["CNC Milling","CNC Turning","Injection Moulding","3D Printing","Laser Cutting","Sheet Bending","Casting","Welding"];
+const MATS=["Aluminium","Steel","Stainless Steel","Brass","ABS","Nylon","Titanium","Copper"];
+const CATS=["Machined Parts","Plastic Parts","Sheet Metal","Castings","Prototypes","Assemblies"];
+const KEY="manufaconnect_v1";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9);
+let wasOv=false,S,ui={view:"showcase",rfq:null,thread:null,filter:""};
+function seed(){const c=(id,name,about,cats,mats,procs,city)=>({id,name,about,contact:"sales@"+name.toLowerCase().replace(/\W/g,"")+".example",city,cats,mats,procs});
+return{user:null,users:[],
+companies:[c("c1","Precision CNC Works","ISO 9001 shop making tight-tolerance machined parts for aerospace and automation.",["Machined Parts","Prototypes"],["Aluminium","Steel","Titanium"],["CNC Milling","CNC Turning"],"Pune"),
+c("c2","PolyForm Moulders","Injection moulding and rapid 3D printing from prototype to 100k units.",["Plastic Parts","Prototypes"],["ABS","Nylon"],["Injection Moulding","3D Printing"],"Chennai"),
+c("c3","Delhi Sheetworks","Laser cutting, bending and welding for enclosures and brackets.",["Sheet Metal","Assemblies"],["Steel","Stainless Steel","Aluminium"],["Laser Cutting","Sheet Bending","Welding"],"Delhi")],
+products:[{id:"p1",co:"c1",title:"Custom Aluminium Manifold",desc:"5-axis milled hydraulic manifolds, anodised finish.",img:"",video:""},
+{id:"p2",co:"c2",title:"Nylon Gear Set",desc:"Low-noise gears, glass-filled nylon, batch runs.",img:"",video:""},
+{id:"p3",co:"c3",title:"Stainless Enclosures",desc:"IP65 laser-cut and folded enclosures with powder coat.",img:"",video:""}],
+rfqs:[],quotes:[],msgs:[],notifs:[]}}
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}if(!S)S=seed();if(!S.dms)S.dms=[];if(!S.products.some(p=>p.id==="p4"))S.products.push({id:"p4",co:"c1",type:"reel",title:"5-axis milling, behind the scenes",desc:"A manifold block going from billet to finished part.",img:"",video:""})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast("Storage full: try smaller images.")}}
+async function hash(s){try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}catch(e){return btoa(s)}}
+const me=()=>S.user&&S.users.find(u=>u.id===S.user);
+const myCo=()=>me()&&S.companies.find(c=>c.id===me().co);
+const co=id=>S.companies.find(c=>c.id===id)||{name:"Unknown"};
+const chips=(n,opts,sel=[])=>`<div class="chips">${opts.map(o=>`<label><input type="checkbox" name="${n}" value="${o}" ${sel.includes(o)?"checked":""}>${o}</label>`).join("")}</div>`;
+const vals=(f,n)=>[...f.querySelectorAll(`[name=${n}]:checked`)].map(x=>x.value);
+const tags=(a,c="")=>(a||[]).map(t=>`<span class="tag ${c}">${esc(t)}</span>`).join("");
+const unread=()=>S.notifs.filter(n=>n.to===me().co&&!n.read).length;
+function notify(to,text,rfq){S.notifs.unshift({id:uid(),to,text,rfq,t:Date.now(),read:false})}
+
+/* matching */
+function score(c,r){let s=0;const m=[];
+if(c.procs.includes(r.process)){s+=50;m.push("Process")}
+if(c.mats.includes(r.material)){s+=35;m.push("Material")}
+if(c.cats.includes(r.category)){s+=15;m.push("Category")}
+return{s,m}}
+const matches=r=>S.companies.filter(c=>c.id!==r.buyer).map(c=>({c,...score(c,r)})).filter(x=>x.s>=50).sort((a,b)=>b.s-a.s);
+
+const shrink=(file,w=360)=>new Promise(res=>{const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,w/i.width),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.7))};i.src=r.result};r.readAsDataURL(file)});
+
+/* views */
+function nav(){const n=$n=document.getElementById("nav");
+if(!me()){n.innerHTML="";document.getElementById("who").textContent="";return}
+const T=[["showcase","Showcase"],["makers","Manufacturers"],["rfqs","RFQs"],["messages","Messages"],["alerts","Alerts"+(unread()?`<span class="dot">${unread()}</span>`:"")],["company","My company"]];
+n.innerHTML=T.map(([k,l])=>`<button class="${ui.view===k?"on":""}" onclick="go('${k}')">${l}</button>`).join("");
+document.getElementById("who").innerHTML=`${esc(myCo().name)} · <a href="#" onclick="logout();return false">Log out</a>`}
+function swap(){render();const a=document.getElementById("app");a.classList.remove("enter");void a.offsetWidth;a.classList.add("enter");window.scrollTo({top:0,behavior:"smooth"})}
+function toast(m){let t=document.getElementById("toast");if(!t){t=document.createElement("div");t.id="toast";document.body.appendChild(t)}t.textContent=m;t.className="show";clearTimeout(toast.h);toast.h=setTimeout(()=>t.className="",2600)}
+function go(v,extra={}){ui={...ui,view:v,rfq:null,thread:null,chat:null,compose:false,open:null,...extra};swap()}
+function logout(){S.user=null;save();render()}
+function render(){nav();const a=document.getElementById("app");if(!me()){a.innerHTML=authView();return}
+a.innerHTML=({showcase,makers,rfqs,messages,alerts,company,rfqNew,rfqDetail})[ui.rfq?"rfqDetail":ui.view]()+chatBox()+composer()+viewer();const cm=document.getElementById("cm");if(cm)cm.scrollTop=cm.scrollHeight;const ov=document.querySelector(".ov");if(ov&&!wasOv)ov.classList.add("in");wasOv=!!ov;const oi=document.querySelector(".ov input");if(oi)oi.focus()}
+function authView(){return`<div class="card auth"><div style="font-size:42px">⚙️</div><h2 class="logo" style="font-size:26px;margin:4px 0">ManufaConnect</h2><p class="mu">Post RFQs, showcase your products and quote securely. Demo runs fully in your browser.</p>
+<div id="mode"><form onsubmit="login(event)"><label>Email</label><input name="email" type="email" required><label>Password</label><input name="pw" type="password" required minlength="6">
+<p><button class="p">Log in</button> <button type="button" class="s" onclick="document.getElementById('mode').innerHTML=regForm()">Create account</button></p></form></div></div>`}
+const regForm=()=>`<form onsubmit="register(event)"><label>Company name</label><input name="co" required><label>City</label><input name="city"><label>Email</label><input name="email" type="email" required><label>Password (6+ chars)</label><input name="pw" type="password" required minlength="6">
+<p><button class="p">Register</button> <button type="button" class="s" onclick="render()">Back</button></p></form>`;
+async function register(e){e.preventDefault();const f=e.target,em=f.email.value.trim().toLowerCase();
+if(S.users.some(u=>u.email===em))return toast("Email already registered.");
+const id="c"+uid();S.companies.push({id,name:f.co.value,city:f.city.value,about:"",contact:em,cats:[],mats:[],procs:[]});
+const u={id:uid(),email:em,pw:await hash(f.pw.value),co:id};S.users.push(u);S.user=u.id;save();go("company")}
+async function login(e){e.preventDefault();const f=e.target,h=await hash(f.pw.value);const u=S.users.find(u=>u.email===f.email.value.trim().toLowerCase()&&u.pw===h);
+if(!u)return toast("Invalid email or password.");S.user=u.id;save();go("showcase")}
+
+const isReel=p=>p.type==="reel"||(!p.type&&p.video);
+const hue=t=>Math.abs([...t].reduce((a,c)=>a*31+c.charCodeAt(0)|0,7))%360;
+const av=(c,z=44)=>`<span class="av" style="width:${z}px;height:${z}px;font-size:${z*.42}px;background:hsl(${hue(c.name)} 55% 42%)">${esc(c.name[0])}</span>`;
+const media=(p,cls,ctl)=>`<div class="pm ${cls}">${p.video?`<video src="${esc(p.video)}" ${ctl?"controls":""} muted playsinline loop></video>`:p.img?`<img src="${p.img}" alt="">`:`<div class="ph" style="background:linear-gradient(135deg,hsl(${hue(p.title)} 55% 40%),hsl(${hue(p.title)+40} 55% 28%))">${isReel(p)?"🎬":"🏭"}</div>`}</div>`;
+function feedPost(p){const c=co(p.co),id=myCo().id,lk=p.likes||[],cm=p.comments||[];
+return`<article class="ig"><div class="igh">${av(c,36)}<div><b>${esc(c.name)}</b><div class="mu">${esc(c.city)}${isReel(p)?" · Reel":""}</div></div>${p.co!==id?`<button class="s sm" onclick="ui.chat='${p.co}';render()">Message</button>`:`<button class="s sm" onclick="delProduct('${p.id}')">Delete</button>`}</div>
+${media(p,isReel(p)?"r45":"sq",1)}
+<div class="iga"><button class="ic" aria-label="Like" onclick="like('${p.id}')">${lk.includes(id)?"❤️":"🤍"}</button><span class="mu">💬 ${cm.length}</span></div>
+<div class="igc"><b>${lk.length} like${lk.length===1?"":"s"}</b><div><b>${esc(c.name)}</b> ${esc(p.title)}: ${esc(p.desc)}</div>
+${cm.map(x=>`<div><b>${esc(co(x.co).name)}</b> <span class="mu">${esc(x.text)}</span></div>`).join("")}
+<form onsubmit="addComment(event,'${p.id}')"><input name="x" placeholder="Add a comment…" required></form></div></article>`}
+const reelTile=p=>`<div class="rt" onclick="ui.open='${p.id}';render()">${media(p,"r916")}<div class="ro"><b>▶ ${(p.likes||[]).length} ❤</b><span>${esc(p.title)}</span></div></div>`;
+function showcase(){const all=S.products.filter(p=>!ui.co||p.co===ui.co),reels=all.filter(isReel),emp=`<p class="mu" style="text-align:center">Nothing here yet. Tap + to share something.</p>`;
+return`<div class="igw"><div class="stories"><div class="st" onclick="ui.compose=true;render()"><span class="ring add">${av(myCo(),58)}<i>+</i></span><small>Your post</small></div>
+${S.companies.map(c=>`<div class="st" onclick="ui.co=ui.co==='${c.id}'?null:'${c.id}';render()"><span class="ring ${ui.co===c.id?"sel":""}">${av(c,58)}</span><small>${esc(c.name.split(" ")[0])}</small></div>`).join("")}</div>
+<div class="tabs"><button class="${ui.tab==="reels"?"":"on"}" onclick="ui.tab='feed';render()">▦ Feed</button><button class="${ui.tab==="reels"?"on":""}" onclick="ui.tab='reels';render()">🎬 Reels</button></div>
+${ui.tab==="reels"?`<div class="rg">${reels.map(reelTile).join("")||emp}</div>`:all.map(feedPost).join("")||emp}</div>
+<button class="fab" onclick="ui.compose=true;render()" title="New post or reel" aria-label="New post or reel">+</button>`}
+function viewer(){const p=S.products.find(x=>x.id===ui.open);if(!p)return"";return`<div class="ov" onclick="if(event.target===this){ui.open=null;render()}"><div class="md" style="padding:0">${feedPost(p)}</div></div>`}
+function like(id){const p=S.products.find(x=>x.id===id),c=myCo().id;p.likes=p.likes||[];const i=p.likes.indexOf(c);i<0?p.likes.push(c):p.likes.splice(i,1);save();render()}
+function addComment(e,id){e.preventDefault();const p=S.products.find(x=>x.id===id);(p.comments=p.comments||[]).push({co:myCo().id,text:e.target.x.value});if(p.co!==myCo().id)notify(p.co,`${myCo().name} commented on ${p.title}`,null);save();render()}
+function composer(){if(!ui.compose)return"";return`<div class="ov" onclick="if(event.target===this){ui.compose=false;render()}"><form class="card md" onsubmit="addProduct(event)"><h3>New post or reel</h3>
+<label>Type</label><select name="ty"><option value="post">Post (image)</option><option value="reel">Reel (short video)</option></select>
+<label>Title</label><input name="t" required><label>Description</label><textarea name="d" rows="2" required></textarea>
+<label>Upload image or short video (video up to 1.5 MB)</label><input name="f" type="file" accept="image/*,video/*"><label>…or video URL (mp4)</label><input name="v" type="url">
+<p><button class="p">Publish</button> <button type="button" class="s" onclick="ui.compose=false;render()">Cancel</button></p></form></div>`}
+async function addProduct(e){e.preventDefault();const f=e.target,file=f.f.files[0];let img="",video=f.v.value;
+if(file){if(file.type.startsWith("video/")){if(file.size>1.5e6)return toast("Video too large for this demo (max 1.5 MB). Paste a video URL instead.");video=await new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(file)})}else img=await shrink(file)}
+if(f.ty.value==="reel"&&!video&&!img)return toast("Add a video file or URL for the reel.");
+S.products.unshift({id:uid(),co:myCo().id,type:f.ty.value,title:f.t.value,desc:f.d.value,video,img});ui.compose=false;save();render()}
+function delProduct(id){S.products=S.products.filter(p=>p.id!==id);save();render()}
+
+const dkey=(a,b)=>[a,b].sort().join("|");
+function chatBox(){if(!ui.chat)return"";const id=myCo().id,o=ui.chat,th=S.dms.filter(m=>m.k===dkey(id,o));
+return`<div class="ov" onclick="if(event.target===this){ui.chat=null;render()}"><div class="card md"><div style="display:flex;justify-content:space-between;gap:8px"><h3>${esc(myCo().name)} ↔ ${esc(co(o).name)}</h3><button class="s" onclick="ui.chat=null;render()">✕</button></div><div class="mu">Private chat, visible only to these two companies</div>
+<div class="msgs" id="cm" style="margin-top:8px">${th.map(m=>`<div class="m ${m.from===id?"me":""}">${esc(m.text)}</div>`).join("")||"<span class=mu>Say hello 👋</span>"}</div>
+<form onsubmit="sendDm(event)" style="display:flex;gap:6px"><input name="x" required placeholder="Write a message…"><button class="p">Send</button></form></div></div>`}
+function sendDm(e){e.preventDefault();const id=myCo().id,o=ui.chat;S.dms.push({id:uid(),k:dkey(id,o),from:id,to:o,text:e.target.x.value,t:Date.now()});notify(o,`New message from ${myCo().name}`,null);save();render()}
+
+function makers(){const id=myCo().id;return`<h2>Manufacturers</h2><div class="grid">${S.companies.map(c=>`<div class="card"><h3>${esc(c.name)}</h3><div class="mu">${esc(c.city)} · ${esc(c.contact)}</div><p>${esc(c.about)||"<span class=mu>No description yet.</span>"}</p>
+${tags(c.cats)}${tags(c.procs)}${tags(c.mats,"w")}${c.id!==id?`<p><button class="p" onclick="ui.chat='${c.id}';render()">💬 Chat</button></p>`:""}</div>`).join("")}</div>`}
+function company(){const c=myCo();return`<h2>My company profile</h2><form class="card" onsubmit="saveCo(event)"><div class="row"><div><label>Name</label><input name="n" value="${esc(c.name)}" required></div><div><label>City</label><input name="city" value="${esc(c.city)}"></div><div><label>Contact email</label><input name="c" value="${esc(c.contact)}"></div></div>
+<label>Business description</label><textarea name="a" rows="3">${esc(c.about)}</textarea>
+<label>Product categories</label>${chips("cats",CATS,c.cats)}<label>Manufacturing processes</label>${chips("procs",PROCS,c.procs)}<label>Materials</label>${chips("mats",MATS,c.mats)}
+<p class="mu">These capabilities decide which RFQs you are alerted about.</p><button class="p">Save profile</button></form>`}
+function saveCo(e){e.preventDefault();const f=e.target,c=myCo();Object.assign(c,{name:f.n.value,city:f.city.value,contact:f.c.value,about:f.a.value,cats:vals(f,"cats"),procs:vals(f,"procs"),mats:vals(f,"mats")});save();toast("Profile saved.");render()}
+
+function rfqs(){const id=myCo().id,mine=S.rfqs.filter(r=>r.buyer===id),rel=S.rfqs.filter(r=>r.buyer!==id&&score(myCo(),r).s>=50);
+const card=r=>`<div class="card" style="cursor:pointer" onclick="openRfq('${r.id}')"><h3>${esc(r.title)}</h3><div class="mu">${esc(co(r.buyer).name)} · due ${esc(r.deadline)}</div>${tags([r.process,r.material,r.qty+" pcs"])}<span class="tag w">${S.quotes.filter(q=>q.rfq===r.id).length} quotes</span></div>`;
+return`<div style="display:flex;justify-content:space-between;align-items:center"><h2>RFQs</h2><button class="p" onclick="go('rfqNew')">+ Create RFQ</button></div>
+<h3>Matched to your capabilities</h3><div class="grid">${rel.map(card).join("")||"<p class=mu>Nothing yet. Add processes and materials to your profile.</p>"}</div>
+<h3 style="margin-top:22px">My RFQs</h3><div class="grid">${mine.map(card).join("")||"<p class=mu>You have not published any RFQs.</p>"}</div>`}
+function openRfq(id){ui.rfq=id;ui.thread=null;swap()}
+function rfqNew(){return`<h2>Create RFQ</h2><form class="card" onsubmit="addRfq(event)"><label>Title</label><input name="t" required placeholder="e.g. Aluminium bracket, 500 units">
+<div class="row"><div><label>Category</label><select name="cat">${CATS.map(x=>`<option>${x}</option>`).join("")}</select></div><div><label>Process</label><select name="pr">${PROCS.map(x=>`<option>${x}</option>`).join("")}</select></div><div><label>Material</label><select name="m">${MATS.map(x=>`<option>${x}</option>`).join("")}</select></div></div>
+<div class="row"><div><label>Dimensions (mm)</label><input name="dim" required placeholder="120 x 60 x 25"></div><div><label>Quantity</label><input name="q" type="number" min="1" required></div><div><label>Deadline</label><input name="dl" type="date" required></div></div>
+<label>Other requirements (tolerance, finish, certifications)</label><textarea name="o" rows="2"></textarea>
+<label>Reference images (photos or drawings, up to 4)</label><input name="cad" type="file" accept="image/*" multiple><p><button class="p">Publish RFQ &amp; notify manufacturers</button> <button type="button" class="s" onclick="go('rfqs')">Cancel</button></p></form>`}
+async function addRfq(e){e.preventDefault();const f=e.target,imgs=[];for(const file of [...f.cad.files].slice(0,4))imgs.push(await shrink(file,700));
+
+const r={id:uid(),buyer:myCo().id,title:f.t.value,category:f.cat.value,process:f.pr.value,material:f.m.value,dim:f.dim.value,qty:f.q.value,deadline:f.dl.value,other:f.o.value,imgs,t:Date.now()};
+S.rfqs.unshift(r);const ms=matches(r);ms.forEach(x=>notify(x.c.id,`New RFQ matching you: ${r.title} (${x.m.join(", ")})`,r.id));save();
+toast(`RFQ published. ${ms.length} matching manufacturer(s) notified.`);openRfq(r.id)}
+
+function rfqDetail(){const r=S.rfqs.find(x=>x.id===ui.rfq),id=myCo().id,isBuyer=r.buyer===id,qs=S.quotes.filter(q=>q.rfq===r.id);
+const vis=isBuyer?qs:qs.filter(q=>q.mfr===id),mq=qs.find(q=>q.mfr===id);
+let h=`<p><a href="#" onclick="go('rfqs');return false">← All RFQs</a></p><div class="card"><h2 style="margin-top:0">${esc(r.title)}</h2><div class="mu">Posted by ${esc(co(r.buyer).name)} · deadline ${esc(r.deadline)}</div>
+<p>${tags([r.category,r.process,r.material])}<br><b>Dimensions:</b> ${esc(r.dim)} mm · <b>Quantity:</b> ${esc(r.qty)}</p>${r.other?`<p>${esc(r.other)}</p>`:""}
+<h3>Reference images</h3>${(r.imgs||[]).length?`<div class="views">${r.imgs.map(u=>`<figure><img src="${u}" alt="Reference image"></figure>`).join("")}</div>`:`<p class="mu">No images attached.</p>`}</div>`;
+if(isBuyer){const m=matches(r);h+=`<div class="card" style="margin-top:14px"><h3>Matched manufacturers</h3>${m.map(x=>`<div>${esc(x.c.name)} <span class="tag">${x.s}% fit</span><span class="mu">${x.m.join(" · ")}</span></div>`).join("")||"<span class=mu>No matches yet.</span>"}</div>`}
+h+=`<div class="two" style="margin-top:14px"><div class="card"><h3>${isBuyer?"Quotations received":"Your quotation"}</h3>`;
+h+=vis.map(q=>`<div style="border-top:1px solid var(--bd);padding:8px 0"><b>${esc(co(q.mfr).name)}</b> · ₹${esc(q.price)} / unit · ${esc(q.days)} days lead<div class="mu">${esc(q.note)}</div>${isBuyer?`<button class="s" onclick="ui.thread='${q.mfr}';render()">Message</button>`:""}</div>`).join("")||"<p class=mu>None yet.</p>";
+if(!isBuyer&&!mq)h+=`<form onsubmit="addQuote(event,'${r.id}')"><div class="row"><div><label>Price per unit (₹)</label><input name="p" type="number" min="0" step="any" required></div><div><label>Lead time (days)</label><input name="d" type="number" min="1" required></div></div><label>Note</label><textarea name="n" rows="2"></textarea><p><button class="p">Submit quotation</button></p></form>`;
+h+=`</div><div class="card"><h3>Private messages</h3>`;
+const mfr=isBuyer?ui.thread:id;
+if(!mfr)h+=`<p class=mu>Pick a quotation and press Message to open a private thread.</p>`;
+else{const th=S.msgs.filter(m=>m.rfq===r.id&&m.mfr===mfr);h+=`<div class="mu">Between ${esc(co(r.buyer).name)} and ${esc(co(mfr).name)} only</div><div class="msgs">${th.map(m=>`<div class="m ${m.from===id?"me":""}">${esc(m.text)}</div>`).join("")||"<span class=mu>No messages yet.</span>"}</div>
+<form onsubmit="send(event,'${r.id}','${mfr}')" style="display:flex;gap:6px"><input name="x" required placeholder="Write a message…"><button class="p">Send</button></form>`}
+return h+`</div></div>`}
+function addQuote(e,rid){e.preventDefault();const f=e.target,r=S.rfqs.find(x=>x.id===rid);
+S.quotes.push({id:uid(),rfq:rid,mfr:myCo().id,price:f.p.value,days:f.d.value,note:f.n.value});notify(r.buyer,`${myCo().name} quoted ₹${f.p.value}/unit on ${r.title}`,rid);save();render()}
+function send(e,rid,mfr){e.preventDefault();const r=S.rfqs.find(x=>x.id===rid),id=myCo().id;
+S.msgs.push({id:uid(),rfq:rid,mfr,from:id,text:e.target.x.value,t:Date.now()});notify(id===r.buyer?mfr:r.buyer,`New message on ${r.title}`,rid);save();render()}
+function messages(){const id=myCo().id,seen={};
+S.msgs.filter(m=>{const r=S.rfqs.find(x=>x.id===m.rfq);return r&&(r.buyer===id||m.mfr===id)}).forEach(m=>seen[m.rfq+"|"+m.mfr]=m);
+const rf=Object.values(seen).map(m=>{const r=S.rfqs.find(x=>x.id===m.rfq),other=r.buyer===id?m.mfr:r.buyer;return{t:m.t,h:`<div class="card" style="cursor:pointer" onclick="openRfq('${r.id}');ui.thread='${r.buyer===id?m.mfr:""}';render()"><b>${esc(co(other).name)}</b> <span class="tag w">RFQ</span><span class="mu">${esc(r.title)}</span><div class="mu">${esc(m.text)}</div></div>`}});
+const dm={};S.dms.filter(m=>m.k.split("|").includes(id)).forEach(m=>dm[m.k]=m);
+const dl=Object.values(dm).map(m=>{const o=m.from===id?m.to:m.from;return{t:m.t,h:`<div class="card" style="cursor:pointer" onclick="ui.chat='${o}';render()"><b>${esc(co(o).name)}</b> <span class="tag">Direct chat</span><div class="mu">${esc(m.text)}</div></div>`}});
+const items=[...rf,...dl].sort((a,b)=>b.t-a.t);
+return`<h2>Messages</h2><div class="list">${items.map(x=>x.h).join("")||"<p class=mu>No private conversations yet. Use Chat on the Manufacturers page.</p>"}</div>`}
+function alerts(){const id=myCo().id,l=S.notifs.filter(n=>n.to===id);setTimeout(()=>{if(S.notifs.some(n=>n.to===id&&!n.read)){S.notifs.forEach(n=>{if(n.to===id)n.read=true});save();nav()}},800);
+return`<h2>Alerts</h2><div class="list">${l.map(n=>`<div class="card" style="cursor:pointer;${n.read?"":"border-color:var(--wr)"}" onclick="${n.rfq?`openRfq('${n.rfq}')`:"ui.chat=null;go('messages')"}">${esc(n.text)}<div class="mu">${new Date(n.t).toLocaleString()}</div></div>`).join("")||"<p class=mu>No alerts yet.</p>"}</div>`}
+load();render();
+</script></body></html>
